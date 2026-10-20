@@ -681,10 +681,6 @@ function DateScreen({
 
     <div className="content">
 
-      <p className="mission-label">
-        GUARDA ESTA FECHA
-      </p>
-
 
       <motion.div
         className="date-number"
