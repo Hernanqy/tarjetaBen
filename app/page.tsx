@@ -39,6 +39,10 @@ export default function Home() {
   const [error, setError] =
     useState("");
 
+
+  const sendingRef =
+    useRef(false);
+
   const musicRef =
     useRef<HTMLAudioElement | null>(null);
 
@@ -158,41 +162,132 @@ export default function Home() {
   };
 
 
-  const confirm = () => {
+  const confirm =
+    async () => {
 
-    if (
-      !name.trim()
-    ) {
+      if (
+        !name.trim()
+      ) {
 
-      setError(
-        "Escribi tu nombre."
-      );
+        setError(
+          "Escribi tu nombre."
+        );
 
-      return;
+        return;
 
-    }
-
-
-    if (!answer) {
-
-      setError(
-        "Elegi una opcion."
-      );
-
-      return;
-
-    }
+      }
 
 
-    setError("");
+      if (!answer) {
 
-    playSfx(
-      "success"
-    );
+        setError(
+          "Elegi una opcion."
+        );
 
-    setScreen(6);
+        return;
 
-  };
+      }
+
+
+      if (
+        sendingRef.current
+      ) {
+
+        return;
+
+      }
+
+
+      sendingRef.current =
+        true;
+
+
+      setError("");
+
+
+      try {
+
+        const body =
+          new URLSearchParams();
+
+
+        body.append(
+          "nombre",
+          name.trim()
+        );
+
+
+        body.append(
+          "respuesta",
+          answer
+        );
+
+
+        const response =
+          await fetch(
+            "/api/rsvp",
+            {
+              method:
+                "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/x-www-form-urlencoded;charset=UTF-8",
+              },
+
+              body,
+            }
+          );
+
+
+        const data =
+          await response
+            .json()
+            .catch(
+              () => ({
+                ok: false,
+              })
+            );
+
+
+        if (
+          !response.ok ||
+          !data.ok
+        ) {
+
+          throw new Error(
+            "SAVE_FAILED"
+          );
+
+        }
+
+
+        playSfx(
+          "success"
+        );
+
+
+        setScreen(6);
+
+      }
+      catch (error) {
+
+        console.error(
+          error
+        );
+
+
+        sendingRef.current =
+          false;
+
+
+        setError(
+          "No se pudo guardar la respuesta. Intenta nuevamente."
+        );
+
+      }
+
+    };
 
 
   return (
