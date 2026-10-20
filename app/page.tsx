@@ -505,22 +505,58 @@ function BirthdayScreen({
 
   return (
 
-    <div className="content">
+    <div className="content birthday-content">
 
       <motion.div
         className="giant-seven"
         initial={{
           scale: 0,
           rotate: -18,
+          opacity: 0,
         }}
         animate={{
-          scale: 1,
-          rotate: 0,
+          scale: [
+            1,
+            1.045,
+            0.985,
+            1.035,
+            1,
+          ],
+          rotate: [
+            -3,
+            3,
+            -2,
+            2,
+            -3,
+          ],
+          y: [
+            0,
+            -12,
+            5,
+            -8,
+            0,
+          ],
+          opacity: 1,
         }}
         transition={{
-          type: "spring",
-          stiffness: 95,
-          damping: 8,
+          scale: {
+            duration: 3.2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          },
+          rotate: {
+            duration: 3.2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          },
+          y: {
+            duration: 3.2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          },
+          opacity: {
+            duration: 0.5,
+          },
         }}
       >
 
@@ -533,12 +569,14 @@ function BirthdayScreen({
         className="eyebrow"
         initial={{
           opacity: 0,
+          y: -15,
         }}
         animate={{
           opacity: 1,
+          y: 0,
         }}
         transition={{
-          delay: 0.35,
+          delay: 0.25,
         }}
       >
 
@@ -570,22 +608,68 @@ function BirthdayScreen({
       </motion.h1>
 
 
-      <p className="subtitle">
-        La aventura esta por empezar.
-      </p>
+      <motion.p
+        className="birthday-subtitle"
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: [
+            0,
+            -7,
+            0,
+            5,
+            0,
+          ],
+          rotate: [
+            0,
+            -1,
+            0,
+            1,
+            0,
+          ],
+        }}
+        transition={{
+          opacity: {
+            delay: 0.45,
+            duration: 0.6,
+          },
+          y: {
+            delay: 0.9,
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+          },
+          rotate: {
+            delay: 0.9,
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+          },
+        }}
+      >
+
+        La aventura esta por empezar...
+
+      </motion.p>
 
 
-      <NextButton
-        onClick={next}
-        text="SEGUIR"
-      />
+      <div className="birthday-button-zone">
+
+        <NextButton
+          onClick={next}
+          text="SEGUIR"
+        />
+
+      </div>
 
     </div>
 
   );
 
 }
-
 
 function DateScreen({
   next,

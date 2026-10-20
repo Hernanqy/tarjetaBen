@@ -1071,3 +1071,109 @@ a {
   }
 
 }
+
+
+/* BIRTHDAY_SCREEN_FIX_START */
+
+.birthday-content {
+  position: relative;
+  min-height: min(720px, 82dvh);
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.birthday-content .giant-seven {
+  top: 48%;
+  left: 50%;
+  translate: -50% -50%;
+
+  font-size:
+    min(
+      58vw,
+      360px
+    );
+
+  pointer-events: none;
+}
+
+.birthday-content .eyebrow {
+  position: relative;
+  z-index: 3;
+}
+
+.birthday-content .ben-title {
+  position: relative;
+  z-index: 3;
+}
+
+.birthday-subtitle {
+  position: relative;
+  z-index: 3;
+
+  margin:
+    35px 0 0;
+
+  font-family:
+    "Segoe Print",
+    "Bradley Hand",
+    "Comic Sans MS",
+    cursive;
+
+  font-size:
+    clamp(
+      22px,
+      5vw,
+      31px
+    );
+
+  font-weight: 500;
+
+  line-height: 1.35;
+
+  color: #ffffff;
+
+  text-shadow:
+    0 0 8px rgba(0, 234, 255, 0.45),
+    0 0 18px rgba(255, 47, 196, 0.25);
+}
+
+.birthday-button-zone {
+  position: relative;
+  z-index: 4;
+
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+
+  margin-top: 62px;
+}
+
+.birthday-button-zone .next-button {
+  margin-top: 0;
+}
+
+@media (max-width: 600px) {
+
+  .birthday-content {
+    min-height: 680px;
+  }
+
+  .birthday-content .giant-seven {
+    top: 47%;
+    font-size: 72vw;
+  }
+
+  .birthday-subtitle {
+    margin-top: 30px;
+    font-size: 22px;
+  }
+
+  .birthday-button-zone {
+    margin-top: 78px;
+  }
+
+}
+
+/* BIRTHDAY_SCREEN_FIX_END */
