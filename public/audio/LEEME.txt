@@ -1,0 +1,11 @@
+AUDIO FILES
+
+Later place these files here:
+
+musica.mp3
+powerup.mp3
+click.mp3
+whoosh.mp3
+success.mp3
+rocket.mp3
+sparkle.mp3
